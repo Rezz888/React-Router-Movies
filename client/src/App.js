@@ -27,7 +27,7 @@ const App = () => {
     }
     getMovies();
   }, []);
-  console.log(movieList);
+  // console.log(movieList);
 
   const addToSavedList = movie => {
     setSavedList([...savedList, movie]);
@@ -37,10 +37,10 @@ const App = () => {
     <div>
       <SavedList list={savedList} />
       <Route exact path="/">
-        <MovieList addToSavedList={addToSavedList} movies={movieList} />
+        <MovieList movies={movieList} />
       </Route>
       <Route path="/movies/:id">
-        <Movie addToSavedList={addToSavedList} />
+        <Movie />
       </Route>
     </div>
   );
