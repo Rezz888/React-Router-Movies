@@ -1,8 +1,15 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import styled from 'styled-components';
+
+const MovieCardCss = styled.section`
+
+border: 2px solid black;
+background-color: dimgrey;
+`
 
 const MovieList = props => {
-  console.log(props)
+  // console.log(props)
   return (
     <div className="movie-list">
       {props.movies.map(movie => (
@@ -15,9 +22,11 @@ const MovieList = props => {
 function MovieDetails({ movie }) {
   const { title, director, metascore, stars } = movie;
   return (
+    
+    <MovieCardCss>
     <Link to={`/movies/${movie.id}`}>
-    <div className="movie-card">
       <h2>{title}</h2>
+      </Link>
       <div className="movie-director">
         Director: <em>{director}</em>
       </div>
@@ -31,8 +40,8 @@ function MovieDetails({ movie }) {
           {star}
         </div>
       ))}
-    </div>
-    </Link>
+    </MovieCardCss>
+    
   );
 }
 
