@@ -5,8 +5,13 @@ import SavedList from './Movies/SavedList';
 import MovieList from './Movies/MovieList';
 import {Route} from 'react-router-dom';
 import Movie from "./Movies/Movie";
+import styled from 'styled-components';
 
+const MovieCardCss = styled.section`
 
+border: 2px solid black;
+background-color: dodgerblue;
+`
 
 
 const App = () => {
@@ -27,7 +32,7 @@ const App = () => {
     }
     getMovies();
   }, []);
-  // console.log(movieList);
+  
 
   const addToSavedList = movie => {
     setSavedList([...savedList, movie]);
@@ -37,10 +42,10 @@ const App = () => {
     <div>
       <SavedList list={savedList} />
       <Route exact path="/">
-        <MovieList movies={movieList} />
+        <MovieList movies={movieList} style={MovieCardCss} />
       </Route>
       <Route path="/movies/:id">
-        <Movie />
+        <Movie style={MovieCardCss}/>
       </Route>
     </div>
   );

@@ -5,7 +5,8 @@ import { useParams } from "react-router-dom";
 const Movie = (props) => {
   const [movie, setMovie] = useState();
   const params = useParams();
-  console.log(params)
+
+  // console.log(params)
  
   useEffect(() => {
     // const id = 1;
@@ -15,7 +16,9 @@ const Movie = (props) => {
        axios
        .get(`http://localhost:5000/api/movies/${params.id}`)
         .then(response => {
+          // console.log(response.data)
           setMovie(response.data);
+          
         })
         .catch(error => {
           console.error(error);
@@ -35,6 +38,7 @@ const Movie = (props) => {
 
   const { title, director, metascore, stars } = movie;
   return (
+    <props.style>
     <div className="save-wrapper">
       <div className="movie-card">
         <h2>{title}</h2>
@@ -54,6 +58,7 @@ const Movie = (props) => {
       </div>
       <div className="save-button">Save</div>
     </div>
+    </props.style>
   );
 }
 

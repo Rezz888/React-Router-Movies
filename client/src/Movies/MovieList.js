@@ -1,46 +1,41 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import styled from 'styled-components';
 
-const MovieCardCss = styled.section`
 
-border: 2px solid black;
-background-color: dimgrey;
-`
 
-const MovieList = props => {
-  // console.log(props)
+const MovieList = (props) => {
+  // console.log("data injected as props in MovieList:", props)
   return (
     <div className="movie-list">
       {props.movies.map(movie => (
-        <MovieDetails key={movie.id} movie={movie} />
+        <MovieDetails key={movie.id} movie={movie} style={props.style} />
       ))}
     </div>
   );
 }
 
-function MovieDetails({ movie }) {
-  const { title, director, metascore, stars } = movie;
+function MovieDetails(props) {
+  // const { title, director, metascore, stars, style } = movie;
   return (
     
-    <MovieCardCss>
-    <Link to={`/movies/${movie.id}`}>
-      <h2>{title}</h2>
+    <props.style>
+    <Link to={`/movies/${props.movie.id}`}>
+      <h2>{props.movie.title}</h2>
       </Link>
       <div className="movie-director">
-        Director: <em>{director}</em>
+        Director: <em>{props.movie.director}</em>
       </div>
       <div className="movie-metascore">
-        Metascore: <strong>{metascore}</strong>
+        Metascore: <strong>{props.movie.metascore}</strong>
       </div>
       <h3>Actors</h3>
 
-      {stars.map(star => (
-        <div key={star} className="movie-star">
+      {props.movie.stars.map(star => (
+        <div key={props.movie.star} className="movie-star">
           {star}
         </div>
       ))}
-    </MovieCardCss>
+    </props.style>
     
   );
 }
